@@ -1,0 +1,69 @@
+{
+  "model": "Random Forest Regressor",
+  "train_period": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "test_period": [
+    "2026-01-01",
+    "2026-05-26 17:00:00"
+  ],
+  "rows": {
+    "total": 56094,
+    "train": 52596,
+    "test": 3498
+  },
+  "grid_search_rows": 52596,
+  "best_params": {
+    "model__max_depth": 10,
+    "model__min_samples_leaf": 4,
+    "model__n_estimators": 180
+  },
+  "best_cv_neg_mae": -1.4843114877283552,
+  "regression": {
+    "mae": 0.8516772142057955,
+    "rmse": 2.601000983559076,
+    "r2": 0.28977425429161374
+  },
+  "rain_alert": {
+    "accuracy": 0.885934819897084,
+    "f1": 0.6203615604186489,
+    "confusion_matrix": [
+      [
+        2773,
+        266
+      ],
+      [
+        133,
+        326
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9542326221610461,
+        "recall": 0.9124712076340902,
+        "f1-score": 0.9328847771236333,
+        "support": 3039.0
+      },
+      "1": {
+        "precision": 0.5506756756756757,
+        "recall": 0.710239651416122,
+        "f1-score": 0.6203615604186489,
+        "support": 459.0
+      },
+      "accuracy": 0.885934819897084,
+      "macro avg": {
+        "precision": 0.7524541489183609,
+        "recall": 0.8113554295251061,
+        "f1-score": 0.7766231687711411,
+        "support": 3498.0
+      },
+      "weighted avg": {
+        "precision": 0.9012787518246295,
+        "recall": 0.885934819897084,
+        "f1-score": 0.8918761560637167,
+        "support": 3498.0
+      }
+    }
+  }
+}

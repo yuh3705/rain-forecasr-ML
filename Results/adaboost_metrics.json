@@ -1,0 +1,70 @@
+{
+  "model": "AdaBoost Regressor",
+  "train_period": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "test_period": [
+    "2026-01-01",
+    "2026-05-26 17:00:00"
+  ],
+  "rows": {
+    "total": 56094,
+    "train": 52596,
+    "test": 3498
+  },
+  "grid_search_rows": 52596,
+  "best_params": {
+    "model__estimator__max_depth": 8,
+    "model__estimator__min_samples_leaf": 2,
+    "model__learning_rate": 0.03,
+    "model__n_estimators": 80
+  },
+  "best_cv_neg_mae": -1.4628569475698006,
+  "regression": {
+    "mae": 0.8811049609714965,
+    "rmse": 2.5779643625371227,
+    "r2": 0.3022992377617112
+  },
+  "rain_alert": {
+    "accuracy": 0.8699256718124643,
+    "f1": 0.5911949685534591,
+    "confusion_matrix": [
+      [
+        2714,
+        325
+      ],
+      [
+        130,
+        329
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9542897327707455,
+        "recall": 0.8930569266205989,
+        "f1-score": 0.9226585075641679,
+        "support": 3039.0
+      },
+      "1": {
+        "precision": 0.5030581039755352,
+        "recall": 0.7167755991285403,
+        "f1-score": 0.5911949685534591,
+        "support": 459.0
+      },
+      "accuracy": 0.8699256718124643,
+      "macro avg": {
+        "precision": 0.7286739183731403,
+        "recall": 0.8049162628745696,
+        "f1-score": 0.7569267380588135,
+        "support": 3498.0
+      },
+      "weighted avg": {
+        "precision": 0.8950800936578234,
+        "recall": 0.8699256718124643,
+        "f1-score": 0.8791645783457815,
+        "support": 3498.0
+      }
+    }
+  }
+}

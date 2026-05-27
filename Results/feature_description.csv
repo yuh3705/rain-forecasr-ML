@@ -1,0 +1,38 @@
+name,role,origin,calculation_or_meaning,data_type
+latitude,feature,raw,"Latitude of the configured location, Ha Noi.",numeric
+longitude,feature,raw,"Longitude of the configured location, Ha Noi.",numeric
+city,feature,raw,"City name. Current configured value is Ha Noi.",categorical
+rain,feature,raw,"Hourly rainfall from Open-Meteo, in mm.",numeric
+precipitation,feature,raw,"Hourly total precipitation from Open-Meteo, in mm.",numeric
+temperature_2m,feature,raw,"Air temperature at 2 meters from Open-Meteo, in degrees Celsius.",numeric
+relative_humidity_2m,feature,raw,"Relative humidity at 2 meters from Open-Meteo, in percent.",numeric
+dew_point_2m,feature,raw,"Dew point temperature at 2 meters from Open-Meteo, in degrees Celsius.",numeric
+pressure_msl,feature,raw,"Mean sea level pressure from Open-Meteo, in hPa.",numeric
+surface_pressure,feature,raw,"Surface pressure from Open-Meteo, in hPa.",numeric
+wind_speed_10m,feature,raw,"Wind speed at 10 meters from Open-Meteo, in km/h.",numeric
+wind_direction_10m,feature,raw,"Wind direction at 10 meters from Open-Meteo, in degrees.",numeric
+wind_gusts_10m,feature,raw,"Wind gusts at 10 meters from Open-Meteo, in km/h.",numeric
+cloud_cover,feature,raw,"Total cloud cover from Open-Meteo, in percent.",numeric
+cloud_cover_low,feature,raw,"Low-level cloud cover from Open-Meteo, in percent.",numeric
+cloud_cover_mid,feature,raw,"Mid-level cloud cover from Open-Meteo, in percent.",numeric
+cloud_cover_high,feature,raw,"High-level cloud cover from Open-Meteo, in percent.",numeric
+et0_fao_evapotranspiration,feature,raw,"Reference evapotranspiration from Open-Meteo FAO ET0, in mm.",numeric
+vapour_pressure_deficit,feature,raw,"Vapour pressure deficit from Open-Meteo, in kPa.",numeric
+hour,feature,processed,"Extracted from timestamp: hour of day, 0-23.",numeric
+month,feature,processed,"Extracted from timestamp: month of year, 1-12.",numeric
+hour_sin,feature,processed,"Cyclical hour encoding: sin(2 * pi * hour / 24).",numeric
+hour_cos,feature,processed,"Cyclical hour encoding: cos(2 * pi * hour / 24).",numeric
+month_sin,feature,processed,"Cyclical month encoding: sin(2 * pi * month / 12).",numeric
+month_cos,feature,processed,"Cyclical month encoding: cos(2 * pi * month / 12).",numeric
+rain_lag_1h,feature,processed,"Previous-hour rainfall by city: rain.shift(1).",numeric
+rain_lag_3h,feature,processed,"Rainfall 3 hours earlier by city: rain.shift(3).",numeric
+rain_roll_sum_6h,feature,processed,"Past 6-hour rainfall sum by city, excluding current hour: rain.shift(1).rolling(6).sum().",numeric
+rain_roll_sum_12h,feature,processed,"Past 12-hour rainfall sum by city, excluding current hour: rain.shift(1).rolling(12).sum().",numeric
+precipitation_lag_1h,feature,processed,"Previous-hour precipitation by city: precipitation.shift(1).",numeric
+precipitation_roll_sum_6h,feature,processed,"Past 6-hour precipitation sum by city, excluding current hour: precipitation.shift(1).rolling(6).sum().",numeric
+temp_lag_1h,feature,processed,"Previous-hour temperature by city: temperature_2m.shift(1).",numeric
+humidity_lag_1h,feature,processed,"Previous-hour relative humidity by city: relative_humidity_2m.shift(1).",numeric
+dew_point_lag_1h,feature,processed,"Previous-hour dew point by city: dew_point_2m.shift(1).",numeric
+cloud_cover_lag_1h,feature,processed,"Previous-hour total cloud cover by city: cloud_cover.shift(1).",numeric
+target_rain_next_6h,target,processed,"Regression target: total rainfall from t+1 through t+6 hours.",numeric
+target_rain_alert_6h,target,processed,"Binary alert target: 1 if target_rain_next_6h >= 1.0 mm, otherwise 0.",binary

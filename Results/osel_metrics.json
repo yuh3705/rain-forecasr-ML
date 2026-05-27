@@ -1,0 +1,71 @@
+{
+  "model": "OSEL - Optimized Stacking Ensemble Learning",
+  "train_period": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "test_period": [
+    "2026-01-01",
+    "2026-05-26 17:00:00"
+  ],
+  "rows": {
+    "total": 56094,
+    "train": 52596,
+    "test": 3498
+  },
+  "regression_rain_next_6h_osel": {
+    "mae": 0.852893233731542,
+    "rmse": 2.5362811481942917,
+    "r2": 0.32467913833701556
+  },
+  "rain_alert_from_regression_6h": {
+    "accuracy": 0.8862206975414523,
+    "f1": 0.6280373831775701,
+    "confusion_matrix": [
+      [
+        2764,
+        275
+      ],
+      [
+        123,
+        336
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9573952199515068,
+        "recall": 0.9095097071405067,
+        "f1-score": 0.932838339520756,
+        "support": 3039.0
+      },
+      "1": {
+        "precision": 0.5499181669394435,
+        "recall": 0.7320261437908496,
+        "f1-score": 0.6280373831775701,
+        "support": 459.0
+      },
+      "accuracy": 0.8862206975414523,
+      "macro avg": {
+        "precision": 0.7536566934454751,
+        "recall": 0.8207679254656781,
+        "f1-score": 0.780437861349163,
+        "support": 3498.0
+      },
+      "weighted avg": {
+        "precision": 0.9039269617089289,
+        "recall": 0.8862206975414523,
+        "f1-score": 0.8928430167758954,
+        "support": 3498.0
+      }
+    }
+  },
+  "osel_base_models": [
+    "ridge",
+    "rf",
+    "extra",
+    "lgbm",
+    "xgb"
+  ],
+  "osel_final_alpha": 1.0,
+  "osel_cv_splits": 3
+}

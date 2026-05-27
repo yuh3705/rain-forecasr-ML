@@ -1,0 +1,69 @@
+{
+  "model": "Extra Trees Regressor",
+  "train_period": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "test_period": [
+    "2026-01-01",
+    "2026-05-26 17:00:00"
+  ],
+  "rows": {
+    "total": 56094,
+    "train": 52596,
+    "test": 3498
+  },
+  "grid_search_rows": 52596,
+  "best_params": {
+    "model__max_depth": 14,
+    "model__min_samples_leaf": 4,
+    "model__n_estimators": 180
+  },
+  "best_cv_neg_mae": -1.4545194798994254,
+  "regression": {
+    "mae": 0.8460401816029172,
+    "rmse": 2.536652837436785,
+    "r2": 0.3244811887585356
+  },
+  "rain_alert": {
+    "accuracy": 0.8873642081189251,
+    "f1": 0.6275992438563327,
+    "confusion_matrix": [
+      [
+        2772,
+        267
+      ],
+      [
+        127,
+        332
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9561917902725078,
+        "recall": 0.912142152023692,
+        "f1-score": 0.9336476928258673,
+        "support": 3039.0
+      },
+      "1": {
+        "precision": 0.5542570951585977,
+        "recall": 0.7233115468409586,
+        "f1-score": 0.6275992438563327,
+        "support": 459.0
+      },
+      "accuracy": 0.8873642081189251,
+      "macro avg": {
+        "precision": 0.7552244427155528,
+        "recall": 0.8177268494323253,
+        "f1-score": 0.7806234683411,
+        "support": 3498.0
+      },
+      "weighted avg": {
+        "precision": 0.9034507882549877,
+        "recall": 0.8873642081189251,
+        "f1-score": 0.893488676794702,
+        "support": 3498.0
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "model": "Gradient Boosting Regressor",
+  "train_period": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "test_period": [
+    "2026-01-01",
+    "2026-05-26 17:00:00"
+  ],
+  "rows": {
+    "total": 56094,
+    "train": 52596,
+    "test": 3498
+  },
+  "grid_search_rows": 52596,
+  "best_params": {
+    "model__learning_rate": 0.05,
+    "model__max_depth": 5,
+    "model__n_estimators": 100
+  },
+  "best_cv_neg_mae": -1.4794269682611016,
+  "regression": {
+    "mae": 0.8603734295665256,
+    "rmse": 2.598805826040285,
+    "r2": 0.2909725617890212
+  },
+  "rain_alert": {
+    "accuracy": 0.8785020011435106,
+    "f1": 0.6046511627906976,
+    "confusion_matrix": [
+      [
+        2748,
+        291
+      ],
+      [
+        134,
+        325
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9535045107564192,
+        "recall": 0.9042448173741362,
+        "f1-score": 0.9282215841918595,
+        "support": 3039.0
+      },
+      "1": {
+        "precision": 0.5275974025974026,
+        "recall": 0.7080610021786492,
+        "f1-score": 0.6046511627906976,
+        "support": 459.0
+      },
+      "accuracy": 0.8785020011435106,
+      "macro avg": {
+        "precision": 0.7405509566769108,
+        "recall": 0.8061529097763926,
+        "f1-score": 0.7664363734912786,
+        "support": 3498.0
+      },
+      "weighted avg": {
+        "precision": 0.8976179005091383,
+        "recall": 0.8785020011435106,
+        "f1-score": 0.885763372807316,
+        "support": 3498.0
+      }
+    }
+  }
+}
