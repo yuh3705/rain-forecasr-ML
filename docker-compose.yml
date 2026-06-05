@@ -1,0 +1,10 @@
+services:
+  rainfall-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./Notebooks/models:/app/Notebooks/models:ro
+    environment:
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+    restart: unless-stopped

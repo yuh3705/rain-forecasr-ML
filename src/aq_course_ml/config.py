@@ -14,7 +14,7 @@ REPORT_DIR = PROJECT_DIR / "Results"
 RAW_DATA_PATH = RAW_DIR / "rain_weather_hourly.csv"
 PROCESSED_DATA_PATH = PROCESSED_DIR / "rainfall_features.csv"
 METRICS_PATH = REPORT_DIR / "metrics.json"
-REGRESSION_MODEL_PATH = MODEL_DIR / "rainfall_osel_regressor.joblib"
+REGRESSION_MODEL_PATH = MODEL_DIR / "osel_regressor.joblib"
 PREDICTION_PLOT_PATH = REPORT_DIR / "rainfall_predictions.png"
 
 FORECAST_HORIZON_HOURS = 6

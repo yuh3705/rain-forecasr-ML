@@ -65,7 +65,7 @@ python -m src.aq_course_ml.train_model
 
 Ket qua:
 
-- `Notebooks/models/rainfall_osel_regressor.joblib`: model hoi quy OSEL du bao tong luong mua tai Ha Noi trong 6 gio toi.
+- `Notebooks/models/osel_regressor.joblib`: model hoi quy OSEL du bao tong luong mua tai Ha Noi trong 6 gio toi.
 - `Results/metrics.json`: chi so danh gia.
 - `Results/rainfall_predictions.png`: bieu do du bao.
 
@@ -98,9 +98,29 @@ pip install xgboost lightgbm
 
 ## Chay Streamlit app
 
+Chay truc tiep:
+
 ```bash
 streamlit run app.py
 ```
+
+Chay bang Docker:
+
+```bash
+docker compose up -d --build
+```
+
+Mo app tai `http://127.0.0.1:8501`.
+
+Tat app Docker:
+
+```bash
+docker compose down
+```
+
+Docker se mount thu muc `Notebooks/models` tu may local vao container, nen file
+`osel_regressor.joblib` khong can commit len GitHub nhung van dung duoc
+khi chay app.
 
 ## Bai toan hoc may
 

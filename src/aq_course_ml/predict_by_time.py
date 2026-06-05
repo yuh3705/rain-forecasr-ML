@@ -67,6 +67,7 @@ def fetch_weather_window(target_timestamp: datetime | pd.Timestamp) -> pd.DataFr
     weather_df["latitude"] = location["latitude"]
     weather_df["longitude"] = location["longitude"]
     weather_df = weather_df.sort_values(["city", "timestamp"]).reset_index(drop=True)
+    weather_df = weather_df[weather_df["timestamp"] <= target].reset_index(drop=True)
     return weather_df
 
 

@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from datetime import datetime
+import sys
 
 import joblib
+import numpy as np
 import pandas as pd
 import streamlit as st
 
@@ -16,10 +18,42 @@ from src.aq_course_ml.predict_by_time import build_prediction_features
 st.set_page_config(page_title="Rainfall Forecast OSEL", layout="wide")
 
 
+class TimeSeriesStackingRegressor:
+    """Compatibility class for OSEL models saved from Notebooks/OSEL.ipynb."""
+
+    def predict(self, X):
+        base_predictions = np.column_stack([model.predict(X) for _, model in self.base_models_])
+        return self.final_estimator_.predict(self._combine_features(base_predictions, X))
+
+    def _combine_features(self, base_predictions, X):
+        if self.passthrough:
+            passthrough_features = self.passthrough_preprocessor_.transform(X)
+            if hasattr(passthrough_features, "toarray"):
+                passthrough_features = passthrough_features.toarray()
+            return np.hstack([base_predictions, passthrough_features])
+        return base_predictions
+
+
+def register_model_compatibility() -> None:
+    setattr(sys.modules["__main__"], "TimeSeriesStackingRegressor", TimeSeriesStackingRegressor)
+
+    try:
+        import sklearn.compose._column_transformer as column_transformer
+    except ImportError:
+        return
+
+    if not hasattr(column_transformer, "_RemainderColsList"):
+        class _RemainderColsList(list):
+            pass
+
+        column_transformer._RemainderColsList = _RemainderColsList
+
+
 @st.cache_resource
 def load_model():
     if not REGRESSION_MODEL_PATH.exists():
         return None
+    register_model_compatibility()
     return joblib.load(REGRESSION_MODEL_PATH)
 
 
