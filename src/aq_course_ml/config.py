@@ -22,7 +22,6 @@ RAIN_ALERT_THRESHOLD_MM = 1.0
 RANDOM_STATE = 42
 OPEN_METEO_HOURLY_VARIABLES = [
     "rain",
-    "precipitation",
     "temperature_2m",
     "relative_humidity_2m",
     "dew_point_2m",
@@ -45,7 +44,6 @@ LOCATIONS = [
 
 BASE_COLUMNS = [
     "rain",
-    "precipitation",
     "temperature_2m",
     "relative_humidity_2m",
     "dew_point_2m",
@@ -66,7 +64,6 @@ FEATURE_COLUMNS = [
     "latitude",
     "longitude",
     "rain",
-    "precipitation",
     "temperature_2m",
     "relative_humidity_2m",
     "dew_point_2m",
@@ -91,14 +88,12 @@ FEATURE_COLUMNS = [
     "rain_lag_3h",
     "rain_roll_sum_6h",
     "rain_roll_sum_12h",
-    "precipitation_lag_1h",
-    "precipitation_roll_sum_6h",
     "temp_lag_1h",
     "humidity_lag_1h",
     "dew_point_lag_1h",
     "cloud_cover_lag_1h",
 ]
 
-CATEGORICAL_COLUMNS = ["city"]
+CATEGORICAL_COLUMNS = []
 REGRESSION_TARGET = "target_rain_next_6h"
 CLASSIFICATION_TARGET = "target_rain_alert_6h"

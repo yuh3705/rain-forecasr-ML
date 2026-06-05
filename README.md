@@ -112,10 +112,10 @@ Project tap trung vao 1 bai toan chinh va 1 buoc suy luan canh bao:
 
 Feature set gom:
 
-- Du lieu goc: `rain`, `precipitation`, nhiet do, do am, diem suong, ap suat, toc do/huong/gust gio, do che phu may theo tang, evapotranspiration, vapour pressure deficit.
+- Du lieu goc: `rain`, nhiet do, do am, diem suong, ap suat, toc do/huong/gust gio, do che phu may theo tang, evapotranspiration, vapour pressure deficit. Cot `precipitation` khong dung lam feature vi trung voi `rain` trong bo du lieu nay.
 - Dac trung thoi gian: gio trong ngay va thang trong nam.
 - Dac trung chu ky: sin/cos theo gio va thang.
-- Dac trung chuoi thoi gian: rain lag 1h, lag 3h, rolling sum 6h, rolling sum 12h, precipitation rolling sum 6h, lag nhiet do, do am, diem suong va cloud cover.
+- Dac trung chuoi thoi gian: rain lag 1h, lag 3h, rolling sum 6h, rolling sum 12h, lag nhiet do, do am, diem suong va cloud cover.
 
 ## Goi y viet bao cao
 

@@ -44,17 +44,17 @@ def build_preprocessor() -> ColumnTransformer:
             ("scaler", StandardScaler()),
         ]
     )
-    categorical_pipeline = Pipeline(
-        steps=[
-            ("imputer", SimpleImputer(strategy="most_frequent")),
-            ("onehot", OneHotEncoder(handle_unknown="ignore")),
-        ]
-    )
+    transformers = [("num", numeric_pipeline, FEATURE_COLUMNS)]
+    if CATEGORICAL_COLUMNS:
+        categorical_pipeline = Pipeline(
+            steps=[
+                ("imputer", SimpleImputer(strategy="most_frequent")),
+                ("onehot", OneHotEncoder(handle_unknown="ignore")),
+            ]
+        )
+        transformers.append(("cat", categorical_pipeline, CATEGORICAL_COLUMNS))
     return ColumnTransformer(
-        transformers=[
-            ("num", numeric_pipeline, FEATURE_COLUMNS),
-            ("cat", categorical_pipeline, CATEGORICAL_COLUMNS),
-        ],
+        transformers=transformers,
         sparse_threshold=0.0,
     )
 

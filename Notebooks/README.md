@@ -3,6 +3,7 @@
 Notebook layout following the reference project:
 
 - `Data_preprocessing.ipynb`
+- `Raw_Data_Analysis.ipynb`
 - `Exploratory_Data_Analysis.ipynb`
 - `Decision_Tree.ipynb`
 - `Random_Forest.ipynb`
