@@ -9,8 +9,8 @@ import pandas as pd
 import streamlit as st
 
 from src.aq_course_ml.config import (
+    MODEL_DIR,
     RAIN_ALERT_THRESHOLD_MM,
-    REGRESSION_MODEL_PATH,
 )
 from src.aq_course_ml.predict_by_time import build_prediction_features
 
@@ -50,11 +50,16 @@ def register_model_compatibility() -> None:
 
 
 @st.cache_resource
-def load_model():
-    if not REGRESSION_MODEL_PATH.exists():
+def load_model(model_path: str):
+    path = MODEL_DIR / model_path
+    if not path.exists():
         return None
     register_model_compatibility()
-    return joblib.load(REGRESSION_MODEL_PATH)
+    return joblib.load(path)
+
+
+def available_model_names() -> list[str]:
+    return sorted(path.name for path in MODEL_DIR.glob("*.joblib"))
 
 
 @st.cache_data(ttl=3600)
@@ -62,11 +67,19 @@ def build_features_for_datetime(target_datetime: datetime) -> tuple[pd.DataFrame
     return build_prediction_features(target_datetime)
 
 
-def show_prediction(input_frame: pd.DataFrame, context_frame: pd.DataFrame | None = None) -> None:
-    if model is None:
+def show_prediction(
+    selected_model,
+    input_frame: pd.DataFrame,
+    context_frame: pd.DataFrame | None = None,
+) -> None:
+    if selected_model is None:
         return
 
-    predicted_rain = float(model.predict(input_frame)[0])
+    try:
+        predicted_rain = float(selected_model.predict(input_frame)[0])
+    except Exception as exc:
+        st.error(f"Selected model is not compatible with the current prediction features: {exc}")
+        return
     will_rain = predicted_rain >= RAIN_ALERT_THRESHOLD_MM
 
     st.markdown("---")
@@ -84,12 +97,25 @@ def show_prediction(input_frame: pd.DataFrame, context_frame: pd.DataFrame | Non
             st.dataframe(context_frame.tail(13), use_container_width=True)
 
 
-model = load_model()
+st.title("Rainfall Forecast")
 
-st.title("Rainfall Forecast with OSEL")
+model_names = available_model_names()
+if not model_names:
+    st.warning("No model files found in `Notebooks/models`. Run the notebooks or training pipeline first.")
+    st.stop()
+
+default_model_name = "osel_regressor.joblib"
+default_model_index = model_names.index(default_model_name) if default_model_name in model_names else 0
+selected_model_name = st.selectbox(
+    "Model",
+    model_names,
+    index=default_model_index,
+)
+model = load_model(selected_model_name)
 
 if model is None:
-    st.warning("Model file not found. Run `python run_pipeline.py` before using the app.")
+    st.warning(f"Model file not found: `Notebooks/models/{selected_model_name}`.")
+    st.stop()
 
 input_frame: pd.DataFrame | None = None
 context_frame: pd.DataFrame | None = None
@@ -115,4 +141,4 @@ if st.button("Predict rainfall", type="primary"):
         st.error(f"Could not build prediction input: {exc}")
 
 if input_frame is not None and model is not None:
-    show_prediction(input_frame, context_frame)
+    show_prediction(model, input_frame, context_frame)
